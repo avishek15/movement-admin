@@ -20,8 +20,24 @@ This repository contains the source code for the Movement Admin App, built with 
 
    - Implement email verification to ensure that users provide valid email addresses during registration.
 
-5. **... (More Features to be Added)**
-   - Additional features will be listed as they are planned and implemented.
+5. **Dashboard for Gym Admin (on login)**
+
+   - Admin can see all the trainers and the respective progress of clients in one shot.
+
+6. **Dashboard for Gym Trainers (on login)**
+
+   - An overview of all the clients for the respective trainer, who logged in.
+
+7. **Client Screen Dashboard**
+
+   - Trainer can dive into each client screen, to make modifications and see progress.
+   - Cards with health KPIs
+   - Exercises recommended
+   - Graphs of progress in each workout (weights, times, sets, repetitions, etc.)
+   - Has to be in editable table format
+
+8. **Split to two Apps**
+   - We will later split the same app into two apps, one for Admin (global view), one for Gym Coaches (Coach App).
 
 ## Getting Started
 
