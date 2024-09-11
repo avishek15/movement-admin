@@ -3,11 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { useState, useEffect, useCallback } from "react";
-import AuthService from "@/services/auth.service";
+// import AuthService from "@/services/auth.service";
 
 const Navbar = () => {
   const [user, setUser] = useState<any>(null);
-  const authService = AuthService.getInstance();
+  // const authService = AuthService.getInstance();
 
   const fetchUser = useCallback(async () => {
     const cachedUser = localStorage.getItem("user");
@@ -24,22 +24,22 @@ const Navbar = () => {
       }
     }
 
-    const loggedUser = await authService.getAccount();
-    console.log(loggedUser);
-    setUser(loggedUser || null);
-    if (loggedUser) {
-      localStorage.setItem("user", JSON.stringify(loggedUser));
+    // const loggedUser = await authService.getAccount();
+    // console.log(loggedUser);
+    // setUser(loggedUser || null);
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
       const expiration = new Date().getTime() + 3600000; // 1 hour from now
       localStorage.setItem("userExpiration", expiration.toString());
     }
-  }, [authService]);
+  }, []);
 
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
 
   const handleLogout = async () => {
-    await authService.logout();
+    // await authService.logout();
     setUser(null);
     localStorage.removeItem("user"); // Clear the cached user data
     localStorage.removeItem("userExpiration"); // Clear the expiration time
@@ -69,16 +69,16 @@ const Navbar = () => {
             </>
           ) : (
             <>
-              <Link href="/register">
+              {/* <Link href="/register">
                 <span className="cursor-pointer text-green-700 hover:text-green-900">
                   Register
                 </span>
-              </Link>
-              <Link href="/login">
+              </Link> */}
+              {/* <Link href="/login">
                 <span className="cursor-pointer text-green-700 hover:text-green-900">
                   Login
                 </span>
-              </Link>
+              </Link> */}
             </>
           )}
         </div>
