@@ -1,6 +1,6 @@
 import { Client, Account } from "node-appwrite";
 
-const createAdminCLient = async () => {
+const createAdminClient = async () => {
   const adminClient = new Client();
 
   if (!process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT) {
@@ -32,7 +32,7 @@ const createAdminCLient = async () => {
   };
 };
 
-const createSessionCLient = async (session: any) => {
+const createSessionClient = async (session: any) => {
   const sessionClient = new Client();
 
   if (!process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT) {
@@ -62,4 +62,4 @@ const createSessionCLient = async (session: any) => {
   };
 };
 
-export { createAdminCLient, createSessionCLient };
+export { createAdminClient, createSessionClient };
