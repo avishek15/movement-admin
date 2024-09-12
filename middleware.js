@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
+import auth from "./auth";
 
 export async function middleware(request) {
-  const user = false;
+  const user = await auth.getUser();
   if (!user) {
-    const resp = NextResponse.redirect(new URL("/AppLogin", request.url));
+    request.cookies.delete("session");
+    const resp = NextResponse.redirect(new URL("/login", request.url));
     return resp;
   }
   console.log("Middleware Ran");
