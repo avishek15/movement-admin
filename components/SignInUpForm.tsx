@@ -19,12 +19,12 @@ const LoginRegisterForm = ({
   fields: Field[];
   btnTitle: String;
   loading: boolean;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onSubmit: (e: FormData) => Promise<void>;
 }) => {
   return (
     <form
       className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg"
-      onSubmit={onSubmit}
+      action={onSubmit}
     >
       {fields.map((field) => (
         <div key={field.name} className="mb-4">
