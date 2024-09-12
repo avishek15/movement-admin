@@ -14,7 +14,7 @@ const Navbar = async () => {
             <span>Logo</span>
           </Link>
         </div>
-        <div className="hidden sm:flex space-x-4">
+        <div className="flex space-x-4">
           {user ? (
             <>
               <span className="text-green-700">
