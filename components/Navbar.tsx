@@ -1,8 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import auth from "../auth";
+import auth from "@/auth";
+import axiosInstance from "@/configs/axiosinstance";
 
 const Navbar = async () => {
+  const response = await axiosInstance({
+    url: "http://localhost:3001/api/get-name",
+    method: "get",
+  });
+  const { name } = response.data;
   const user: any = await auth.getUser();
 
   return (
@@ -18,7 +24,7 @@ const Navbar = async () => {
           {user ? (
             <>
               <span className="text-green-700">
-                Hello, <strong> {user.name} </strong>
+                Hello, <strong> {name} </strong>
               </span>
               <form
                 action={auth.deleteSession}

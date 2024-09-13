@@ -1,75 +1,49 @@
-# Movement Admin App Repository
+# Movement Admin App
 
-This repository contains the source code for the Movement Admin App, built with [Next.js](https://nextjs.org/). The app currently implements authentication using [Appwrite](https://appwrite.io/). Please ask for the APPWRITE configuration.
+Welcome to the Movement Admin App repository! This project is built using [Next.js](https://nextjs.org/) and integrates authentication via [Appwrite](https://appwrite.io/). If you need the Appwrite configuration details, please reach out.
 
-## Features to be Implemented
+## Features
 
-1. **First Registration: Make the User Admin**
+### Upcoming Features
 
-   - Upon the first registration, the user should be automatically assigned the Admin role.
+1. **Subsequent Registrations: Admin Approval Required**
 
-2. **Subsequent Registrations: Admin Approval Required**
+   - For all new registrations, the Admin must approve the user before they can access the system.
 
-   - For all subsequent registrations, the Admin needs to approve the user registration before they can access the system.
+2. **Login and Registration System (Implemented) [Need to be Improved]**
 
-3. **Login and Registration System (Implemented) [Need to be Improved]**
+   - The current login and registration system is functional but requires enhancements for better security and user experience.
 
-   - The current login and registration system is functional but requires improvements for better security and user experience.
+3. **Email Verification**
 
-4. **Email Verification**
+   - Implement email verification to ensure users provide valid email addresses during registration.
 
-   - Implement email verification to ensure that users provide valid email addresses during registration.
+4. **Dashboard for Gym Admin (on login)**
 
-5. **Dashboard for Gym Admin (on login)**
+   - Admin can view all trainers and the respective progress of clients at a glance.
 
-   - Admin can see all the trainers and the respective progress of clients in one shot.
+5. **Dashboard for Gym Trainers (on login)**
 
-6. **Dashboard for Gym Trainers (on login)**
+   - Trainers can see an overview of all clients assigned to them upon login.
 
-   - An overview of all the clients for the respective trainer, who logged in.
+6. **Client Screen Dashboard**
 
-7. **Client Screen Dashboard**
+   - Trainers can access each client's screen to make modifications and track progress.
+   - Includes health KPIs, recommended exercises, and progress graphs (weights, times, sets, repetitions, etc.).
+   - Data is presented in an editable table format.
 
-   - Trainer can dive into each client screen, to make modifications and see progress.
-   - Cards with health KPIs
-   - Exercises recommended
-   - Graphs of progress in each workout (weights, times, sets, repetitions, etc.)
-   - Has to be in editable table format
-
-8. **Split to two Apps**
-   - We will later split the same app into two apps, one for Admin (global view), one for Gym Coaches (Coach App).
+7. **Split to Two Apps**
+   - The app will be divided into two separate apps: one for Admin (global view) and one for Gym Coaches (Coach App).
 
 ## Getting Started
 
-First, run the development server:
+To get started with the project, familiarize yourself with the following key files:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. **app/(protected)/page.tsx**: The home page where the user's name is fetched from the backend.
+2. **auth.js**: Contains client-side logic for authentication.
+3. **middleware.js**: Handles redirection logic based on user authentication status.
+4. **configs/appwriteConfig.ts**: Configuration file for Appwrite.
+5. **configs/axiosinstance.js**: Sets up Axios for API calls, including cookie handling.
+6. **app/api/get-name/route.js**: Defines the `/api/get-name` route.
 
-Open [http://localhost:3001](http://localhost:3001) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Feel free to explore these files to understand the project structure and functionality.
