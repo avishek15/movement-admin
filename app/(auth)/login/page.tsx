@@ -1,73 +1,10 @@
-"use client";
-
-import React, { useState, type FormEvent, useEffect, useRef } from "react";
+import React from "react";
 import LoginRegisterForm from "@/components/SignInUpForm";
-import { toast } from "react-toastify";
-import { useRouter } from "next/navigation";
-import AuthService from "@/services/auth.service";
+import auth from "@/auth";
+import { redirect } from "next/navigation";
 
-const Login = () => {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
-  const router = useRouter();
-  const authService = AuthService.getInstance();
-  const initialized = useRef(false);
-
-  useEffect(() => {
-    if (initialized.current) return;
-    initialized.current = true;
-
-    const checkLoggedInUser = async () => {
-      const cachedUser = localStorage.getItem("user");
-      const expirationTime = localStorage.getItem("userExpiration");
-
-      if (cachedUser && expirationTime) {
-        const currentTime = new Date().getTime();
-        const userExpirationTime = new Date(expirationTime).getTime();
-
-        if (currentTime < userExpirationTime) {
-          setIsAuthenticated(true);
-          router.push("/");
-          return;
-        }
-      }
-
-      const user = await authService.getAccount();
-      if (user) {
-        setIsAuthenticated(true);
-        router.push("/");
-      }
-    };
-
-    checkLoggedInUser();
-  }, [authService, router]);
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!email || !password) {
-      toast.error("Please fill in all fields");
-      return;
-    }
-
-    const data = { email, password };
-
-    setLoading(true);
-    authService
-      .login(data)
-      .then((res: any) => {
-        console.log(res);
-        setLoading(false);
-        toast.success("Logged in Successfully!");
-        router.push("/");
-      })
-      .catch((err: any) => {
-        console.log(err);
-        toast.error("Login failed, please check username and password");
-        setLoading(false);
-      });
-  };
+const page = async () => {
+  const loading = false;
 
   const fields = [
     {
@@ -75,23 +12,22 @@ const Login = () => {
       label: "Email",
       type: "email",
       placeholder: "Enter your email here",
-      value: email,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setEmail(e.target.value),
+      // value: email,
+      onChange: null,
     },
     {
       name: "password",
       label: "Password",
       type: "password",
       placeholder: "Enter your password here",
-      value: password,
-      onChange: (e: React.ChangeEvent<HTMLInputElement>) =>
-        setPassword(e.target.value),
+      // value: password,
+      onChange: null,
     },
   ];
+  const user = await auth.getUser();
 
-  if (isAuthenticated) {
-    return null;
+  if (user) {
+    redirect("/");
   }
 
   return (
@@ -104,17 +40,18 @@ const Login = () => {
           fields={fields}
           btnTitle="Sign In"
           loading={loading}
-          onSubmit={handleSubmit}
+          onSubmit={auth.createSession}
         />
         <div className="mt-4 flex justify-between">
-          <a href="/" className="text-blue-500 hover:underline mr-4">
+          {/* <a href="/" className="text-blue-500 hover:underline mr-4">
             Home
-          </a>
+          </a> */}
+          {/* <div></div> */}
           <div className="text-sm text-gray-600">
             Don&apos;t have an account?{" "}
-            <a href="/register" className="text-blue-500 hover:underline">
-              Register
-            </a>
+            {/* <a href="/register" className="text-blue-500 hover:underline"> */}
+            Register through Admin
+            {/* </a> */}
           </div>
         </div>
         <div className="mt-4 text-center">
@@ -127,4 +64,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default page;
