@@ -25,7 +25,7 @@ const Navbar = () => {
     }
 
     const loggedUser = await authService.getAccount();
-    console.log(loggedUser);
+    // const loggedUser = null;
     setUser(loggedUser || null);
     if (loggedUser) {
       localStorage.setItem("user", JSON.stringify(loggedUser));

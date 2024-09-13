@@ -9,6 +9,7 @@ class AuthService {
     if (!AuthService.instance) {
       AuthService.instance = new AuthService();
     }
+    console.log(AuthService.instance);
     return AuthService.instance;
   }
 
