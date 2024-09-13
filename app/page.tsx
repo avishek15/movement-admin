@@ -4,7 +4,7 @@ import axiosInstance from "@/configs/axiosinstance";
 // Define the Home component
 export default async function Home() {
   const response = await axiosInstance({
-    url: "http://localhost:3001/api/userDetails",
+    url: "http://localhost:3001/api/getDB",
     method: "get",
   });
   const { name } = response.data;
