@@ -1,16 +1,12 @@
-import { ToastContainer } from "react-toastify";
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>
-        <ToastContainer />
-        {children}
-      </body>
-    </html>
+    <main>
+      <h1>Auth pages</h1>
+      <div>{children}</div>
+    </main>
   );
 }

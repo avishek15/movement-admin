@@ -1,31 +1,30 @@
 "use client";
-// import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import { ToastContainer } from "react-toastify";
 
 export default function MyClients() {
   const [search, setSearch] = useState("");
-  const clients = [
-    {
-      uid: "1",
-      name: "John Doe",
-      email: "johndoe@gmail.com",
-      phone: "123-456-7890",
-      trainer_id: 123,
-      trainer_name: "Jane Smith",
-    },
-    {
-      uid: "2",
-      name: "Jane Smith",
-      email: "janesmith@gmail.com",
-      phone: "234-567-8901",
-      trainer_id: 234,
-      trainer_name: "John Doe",
-    },
-  ];
 
   const filteredClients = useMemo(() => {
+    const clients = [
+      {
+        uid: "1",
+        name: "John Doe",
+        email: "johndoe@gmail.com",
+        phone: "123-456-7890",
+        trainer_id: 123,
+        trainer_name: "Jane Smith",
+      },
+      {
+        uid: "2",
+        name: "Jane Smith",
+        email: "janesmith@gmail.com",
+        phone: "234-567-8901",
+        trainer_id: 234,
+        trainer_name: "John Doe",
+      },
+    ];
+
     return clients.filter((client) => {
       return (
         client.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -36,27 +35,13 @@ export default function MyClients() {
   }, [search]);
 
   return (
-    // Main container with flexbox layout, minimum height of the screen, centered content, and padding
-    <main className="flex-col min-h-screen items-center justify-between p-24 bg-white text-black">
-      <ToastContainer />
-      {/* <Navbar /> */}
-
+    <main className="flex flex-col min-h-screen items-center justify-between p-24 bg-white text-black">
       <div className="text-center mt-4 flex flex-col items-center gap-8">
-        {/* Heading with large font size, bold style, and black color */}
-        {/* <h1 className="text-4xl font-bold text-white">Hello World</h1> */}
-        <div
-          style={{
-            border: "1px solid gray",
-            borderRadius: 200,
-            overflow: "hidden",
-            height: 48,
-            width: 600,
-            padding: "0px 20px",
-          }}
-        >
+        <div className="border border-gray-400 rounded-full overflow-hidden h-12 w-600 px-5">
           <input
             className="w-full h-full"
             value={search}
+            placeholder="Search clients by name, email, or phone"
             onChange={(e) => {
               console.log(e.target.value);
               setSearch(e.target.value);
@@ -64,56 +49,33 @@ export default function MyClients() {
           />
         </div>
         <h1 className="text-4xl font-bold text-black">My Clients</h1>
-        <table style={{ textAlign: "left" }}>
-          <tr
-            style={{
-              gap: 12,
-              backgroundColor: "#006847",
-              color: "white",
-            }}
-          >
-            <th
-              style={{
-                fontWeight: "normal",
-                minWidth: "200px",
-                paddingLeft: "20px",
-                height: 48,
-              }}
-            >
-              Client Name
-            </th>
-            <th style={{ fontWeight: "normal", minWidth: "200px" }}>Email</th>
-            <th style={{ fontWeight: "normal", minWidth: "200px" }}>
-              Phone Number
-            </th>
-            <th style={{ fontWeight: "normal", minWidth: "200px" }}></th>
-          </tr>
-          {filteredClients.map((client: any, index: number) => (
-            <tr
-              key={client.uid}
-              style={{
-                backgroundColor: index % 2 ? "#eee" : "#fff",
-                height: 48,
-              }}
-            >
-              <td
-                style={{
-                  paddingLeft: "20px",
-                }}
-              >
-                {client.name}
-              </td>
-              <td>{client.email}</td>
-              <td>{client.phone}</td>
-              <td>
-                <Link href={`client/${client.uid}`}>
-                  <p>View Details</p>
-                </Link>
-              </td>
+        <table className="text-left">
+          <tbody>
+            <tr className="gap-3 bg-green-800 text-white">
+              <th className="font-normal min-w-200 pl-5 h-12">Client Name</th>
+              <th className="font-normal min-w-200">Email</th>
+              <th className="font-normal min-w-200">Phone Number</th>
+              <th className="font-normal min-w-200">Trainer Name</th>
+              <th className="font-normal min-w-200"></th>
             </tr>
-          ))}
+            {filteredClients.map((client: any, index: number) => (
+              <tr
+                key={client.uid}
+                className={`${index % 2 ? "bg-gray-200" : "bg-white"} h-12`}
+              >
+                <td className="pl-5">{client.name}</td>
+                <td>{client.email}</td>
+                <td>{client.phone}</td>
+                <td>{client.trainer_name}</td>
+                <td>
+                  <Link href={`client/${client.uid}`}>
+                    <p>View Details</p>
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
-        {/* Subheading with medium font size, regular style, and gray color */}
       </div>
     </main>
   );
