@@ -5,9 +5,6 @@ interface Field {
   name: string;
   label: string;
   type: string;
-  placeholder: string;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const LoginRegisterForm = ({
@@ -19,12 +16,12 @@ const LoginRegisterForm = ({
   fields: Field[];
   btnTitle: String;
   loading: boolean;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => Promise<void>;
+  onSubmit: (e: FormData) => Promise<void>;
 }) => {
   return (
     <form
       className="max-w-md mx-auto p-4 bg-white shadow-md rounded-lg"
-      onSubmit={onSubmit}
+      action={onSubmit}
     >
       {fields.map((field) => (
         <div key={field.name} className="mb-4">
@@ -38,9 +35,6 @@ const LoginRegisterForm = ({
             type={field.type}
             id={field.name}
             name={field.name}
-            placeholder={field.placeholder}
-            value={field.value}
-            onChange={field.onChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>

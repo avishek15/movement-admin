@@ -9,9 +9,9 @@
   --background-end-rgb: 255, 255, 255; /* Default background end color */
 
   /* Define media query variables for dark theme */
-  --foreground-dark-rgb: 255, 255, 255;
-  --background-start-dark-rgb: 0, 0, 0;
-  --background-end-dark-rgb: 0, 0, 0;
+  --foreground-dark-rgb: 0, 0, 0;
+  --background-start-dark-rgb: 214, 219, 220;
+  --background-end-dark-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
