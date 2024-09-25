@@ -1,4 +1,4 @@
-import { Client, Account, Databases } from "node-appwrite";
+import { Client, Account, Databases, Users, Teams } from "node-appwrite";
 
 const createAdminClient = async () => {
   const adminClient = new Client();
@@ -29,8 +29,14 @@ const createAdminClient = async () => {
     get account() {
       return new Account(adminClient);
     },
-    get collection_users() {
+    get database() {
       return new Databases(adminClient);
+    },
+    get users() {
+      return new Users(adminClient);
+    },
+    get teams() {
+      return new Teams(adminClient);
     },
   };
 };
@@ -62,8 +68,14 @@ const createSessionClient = async (session: any) => {
     get account() {
       return new Account(sessionClient);
     },
-    get collection_users() {
+    get database() {
       return new Databases(sessionClient);
+    },
+    get users() {
+      return new Users(sessionClient);
+    },
+    get teams() {
+      return new Teams(sessionClient);
     },
   };
 };

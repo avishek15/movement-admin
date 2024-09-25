@@ -5,9 +5,8 @@ import { cookies } from "next/headers";
 export async function GET(request) {
   const sessionCookie = cookies().get("session");
   try {
-    const { collection_users: database } = await createSessionClient(
-      sessionCookie.value
-    );
+    const { database } = await createSessionClient(sessionCookie.value);
+
     // const { database } = await account.database();
     const { documents } = await database.listDocuments(
       process.env.NEXT_PUBLIC_DATABASE_ID,
