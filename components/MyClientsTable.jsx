@@ -1,30 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import React, { useState, useMemo } from "react";
 
-export default function MyClients() {
+const MyClientsTable = ({ clients }) => {
   const [search, setSearch] = useState("");
 
   const filteredClients = useMemo(() => {
-    const clients = [
-      {
-        uid: "1",
-        name: "John Doe",
-        email: "johndoe@gmail.com",
-        phone: "123-456-7890",
-        trainer_id: 123,
-        trainer_name: "Jane Smith",
-      },
-      {
-        uid: "2",
-        name: "Jane Smith",
-        email: "janesmith@gmail.com",
-        phone: "234-567-8901",
-        trainer_id: 234,
-        trainer_name: "John Doe",
-      },
-    ];
-
     return clients.filter((client) => {
       return (
         client.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -32,7 +13,7 @@ export default function MyClients() {
         client.phone.toLowerCase().includes(search.toLowerCase())
       );
     });
-  }, [search]);
+  }, [clients, search]);
 
   return (
     <main className="flex flex-col min-h-screen items-center justify-between p-24 bg-white text-black">
@@ -56,9 +37,9 @@ export default function MyClients() {
               <th className="font-normal min-w-200">Email</th>
               <th className="font-normal min-w-200">Phone Number</th>
               <th className="font-normal min-w-200">Trainer Name</th>
-              <th className="font-normal min-w-200"></th>
+              <th className="font-normal min-w-200">More</th>
             </tr>
-            {filteredClients.map((client: any, index: number) => (
+            {filteredClients.map((client, index) => (
               <tr
                 key={client.uid}
                 className={`${index % 2 ? "bg-gray-200" : "bg-white"} h-12`}
@@ -79,4 +60,6 @@ export default function MyClients() {
       </div>
     </main>
   );
-}
+};
+
+export default MyClientsTable;
