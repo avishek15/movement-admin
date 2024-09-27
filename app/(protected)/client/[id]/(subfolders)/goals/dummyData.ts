@@ -6,11 +6,11 @@ export const goals = [
       { description: "Lean body mass from 53.7kg to 58kg", completed: false },
       {
         description: "Build bigger back and traps, just to look bigger",
-        completed: false,
+        completed: true,
       },
       {
         description: "Increase size, thickness of chest and shoulders",
-        completed: false,
+        completed: true,
       },
       {
         description: "Improve upper body and core strength for capoeira",

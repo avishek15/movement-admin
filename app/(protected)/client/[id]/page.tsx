@@ -1,5 +1,3 @@
-// import { useRouter } from "next/router";
-
 import Image from "next/image";
 import Link from "next/link";
 
@@ -14,7 +12,7 @@ const Page = ({ params }: { params: { id: string[] } }) => {
     image:
       "https://movementfitnesshk.com/wp-content/uploads/2024/07/Gina-Lai.png",
   };
-  //   const router = useRouter();
+
   return (
     <main className="flex flex-col min-h-screen items-center justify-between p-8 bg-white text-black w-full">
       <div className="text-center mt-4 flex flex-col gap-8 w-full">
@@ -45,12 +43,16 @@ const Page = ({ params }: { params: { id: string[] } }) => {
             stat="24 Entries"
           />
           <LinkTile
-            href="training-plan"
+            href={`${user.uid}/training-plan`}
             label="Training Plan"
             stat="4 Phases / 18 Sessions"
           />
-          <LinkTile href="workouts" label="Workout History" stat="76 Entries" />
-          <LinkTile href="workout-tracker" label="Track New Workout" stat="" />
+          <LinkTile
+            href={`${user.uid}/workouts`}
+            label="Workout History"
+            stat="76 Entries"
+          />
+          <LinkTile href={`/workout/new`} label="Track New Workout" stat="" />
         </div>
       </div>
     </main>
